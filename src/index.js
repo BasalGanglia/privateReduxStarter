@@ -5,12 +5,20 @@ import YTSearch from 'youtube-api-search';
 const API_KEY = 'AIzaSyCH2z_8iMqwouNLAyOaklhp3aQE9rvFdR0';
 import SearchBar from './components/search_bar';
 
-YTSearch({key:API_KEY, term:'surfboards'}, function(data){
-    console.log(data);
-});
-
 // Create new component.
-class App extends Component{
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { videos: [] };
+
+        YTSearch({ key: API_KEY, term: 'surfboards' }, (videos) => {
+          this.setState({videos});
+        });
+
+
+    }
+    
     render() {
         return (
             <div>
